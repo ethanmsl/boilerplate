@@ -45,10 +45,10 @@ echo "Pytest passed!"
 echo "----------------------------------------"
 echo
 
-# Calculate test coverate with Pytest-cov extension; somparing <package> with `tests/`
-echo "Running Pytest-cov to check test coverage..."
-pytest --cov=src tests/ --cov-report=term-missing --cov-fail-under=100
-echo "Pytest passed!"
+# Run Coverage (pytest-extension)
+echo "Running Coverage (pytest-cov)..."
+coverage report --show-missing --fail-under=100
+echo "Coverage passed!"
 echo "----------------------------------------"
 echo
 
