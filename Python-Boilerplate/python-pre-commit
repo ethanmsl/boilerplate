@@ -5,6 +5,9 @@
 # If any command fails, exit immediately with that command's exit status
 set -euo pipefail
 
+# MANUALLY add package name here
+package_name=
+
 # Run black against all code in the `source_code` directory
 echo "Running black..."
 black SRC --check
@@ -29,7 +32,7 @@ echo
 
 # Run Pyright for completness against all code in the `source_code` directory
 echo "Running Pyright for for completeness..."
-pyright --verifytypes bldr_test
+pyright --verifytypes $package_name
 # NOTE: not sure how to get it to use current package automatically
 echo "Pyright passed!"
 echo "----------------------------------------"
@@ -58,7 +61,7 @@ echo
 
 # Generate fresh docs with pdoc
 echo "Generating docs with pdoc..."
-pdoc --output-directory=docs bldr_test tests
+pdoc $package_name tests --output-directory=docs/
 echo "pdoc docs generated!"
 echo "----------------------------------------"
 echo
