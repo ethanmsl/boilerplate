@@ -1,7 +1,10 @@
 
 
 ## Add Common Poetry Dev Dependencies
+from anywhere in project:  
+```zsh
 poetry add --group=dev black isort pdoc pylint pyright pytest pytest-cov
+```
 
 - formatting: `isort` & `black`
 - linting: `pylint`
@@ -11,5 +14,8 @@ poetry add --group=dev black isort pdoc pylint pyright pytest pytest-cov
 
 
 ## Run Pre-Commit Hook Manually
-from root of project:  `.git/hooks/pre-commit`
+from root of project:  
+```zsh
+.git/hooks/pre-commit
+```
 
