@@ -18,4 +18,10 @@ from root of project:
 ```zsh
 .git/hooks/pre-commit
 ```
+from anywhere in project:
+```zsh
+git hook run pre-commit
+```
+(using local alias: `ghk pre-commit`)
+
 
