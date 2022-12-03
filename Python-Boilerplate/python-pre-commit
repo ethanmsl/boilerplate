@@ -34,7 +34,7 @@ echo
 echo "Running Pyright for for completeness..."
 pyright --verifytypes $package_name
 # NOTE: not sure how to get it to use current package automatically
-echo "Pyright passed!"
+echo "Pyright completeness analysis complete.  (see above for results)"
 echo "----------------------------------------"
 echo
 
