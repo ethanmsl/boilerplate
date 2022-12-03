@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+# ^ Note the above "shebang" line. This says "This is an executable shell script"
+# Name this script "pre-commit" and place it in the ".git/hooks/" directory
+
+# If any command fails, exit immediately with that command's exit status
+set -euo pipefail
+
+# Run black against all code in the `source_code` directory
+echo "Running black..."
+black SRC --check
+echo "black passed!"
+echo "----------------------------------------"
+echo
+
+# Run Pylint against all code in the `source_code` directory
+echo "Running pylint..."
+pylint src
+echo "pylint passed!"
+echo "----------------------------------------"
+echo
+
+# Run Pyright for errors against all code in the `source_code` directory
+echo "Running Pyright for errors..."
+pyright
+echo "Pyright passed!"
+echo "----------------------------------------"
+echo
+
+
+# Run Pyright for completness against all code in the `source_code` directory
+echo "Running Pyright for for completeness..."
+pyright --verifytypes bldr_test
+# NOTE: not sure how to get it to use current package automatically
+echo "Pyright passed!"
+echo "----------------------------------------"
+echo
+
+# Run Pytest against all code in the `source_code` directory
+echo "Running Pytest..."
+pytest
+echo "Pytest passed!"
+echo "----------------------------------------"
+echo
+
+# Calculate test coverate with Pytest-cov extension; somparing <package> with `tests/`
+echo "Running Pytest-cov to check test coverage..."
+pytest --cov=src tests/ --cov-report=term-missing --cov-fail-under=100
+echo "Pytest passed!"
+echo "----------------------------------------"
+echo
+
+# Check that Poetry state doesn't detect any errors (NOTE: non-exhaustive)
+echo "Running Poetry check..."
+poetry check
+echo "Poetry check passed!"
+echo "----------------------------------------"
+echo
+
+# Generate fresh docs with pdoc
+echo "Generating docs with pdoc..."
+pdoc --output-directory=docs bldr_test tests
+echo "pdoc docs generated!"
+echo "----------------------------------------"
+echo
+
+
+

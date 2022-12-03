@@ -1,0 +1,42 @@
+
+
+[tool.isort]
+# compatibility with Black formatter
+profile = "black"
+
+
+# [tool.pylint]
+# disable = [
+#     "R0903",  # Too few public methods
+# ]
+
+[tool.pylint.format]
+# line length to match Black formatter
+max-line-length = "88"
+
+
+[tool.pyright]
+include = ["src"]
+exclude = [".venv",
+    "src/experimental",
+    "src/typestubs",
+  "**/__pycache__"
+]
+# utilizing the fact that we've set Poetry `virtualenv.in-project` to true
+venvPath = "."
+venv = ".venv"
+
+typeCheckingMode = "strict"
+reportMissingImports = true
+reportMissingTypeStubs = true
+
+executionEnvironments = [
+  { root = "src" }
+]
+
+
+[tool.pytest.ini_options]
+# adds the following paths to pythonpath, specified relative to root dir
+pythonpath = [
+    "src",
+]
