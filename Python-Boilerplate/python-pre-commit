@@ -52,6 +52,15 @@ echo
 echo -e "${GREEN}Black passed!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
+# Run isort against all code in the `src/` & `tests/` directories
+echo -e "${DARK_GRAY}================================================================${NC}"
+echo -e "${YELLOW}running isort...${NC}"
+echo
+isort src/ tests/ --check-only --diff
+echo
+echo -e "${GREEN}Isort passed!${NC}"
+echo -e "${DARK_GRAY}================================================================${NC}"
+
 # Run Pylint against all code in the `src/` & `tests/` directories
 echo -e "${DARK_GRAY}================================================================${NC}"
 echo -e "${YELLOW}running Pylint...${NC}"
