@@ -44,3 +44,6 @@ Just pipe an install command into it.  e.g. `poetry install foo | poethashnotfou
 alias poethashnotfoundworkaround='rg "not found in known hashes" | choose -f "archive" 1 | choose 0 | xargs -I_ fd _ $POETRY_CACHE_DIR | xargs -o rm -i'
 ```
 
+(Example of input the above extracts from / a 'tell' of when you'd use it:
+
+<img width="600" alt="poetry hash not found output --annotated" src="https://user-images.githubusercontent.com/33399972/205516755-21dceb07-6d8d-4ec6-90f7-7041c5227581.png">)
