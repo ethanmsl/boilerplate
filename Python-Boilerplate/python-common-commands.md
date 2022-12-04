@@ -11,7 +11,7 @@ poetry add --group=dev black coverage isort pdoc pylint pyright pytest
 - formatting: `isort` & `black`
 - linting: `pylint`
 - lsp & typechecking: `pyright`
-- testing: `pytest` + `pytest-cov`
+- testing: `pytest` + `coverage`
 - auto-documentation: `pdoc`
 
 
