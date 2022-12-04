@@ -5,7 +5,7 @@
 ## Add Common Poetry Dev Dependencies
 from anywhere in project:  
 ```zsh
-poetry add --group=dev black isort pdoc pylint pyright pytest pytest-cov
+poetry add --group=dev black coverage isort pdoc pylint pyright pytest
 ```
 
 - formatting: `isort` & `black`
