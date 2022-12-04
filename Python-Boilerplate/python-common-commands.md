@@ -1,4 +1,6 @@
+----------------------------------------------
 
+# Initialization
 
 ## Add Common Poetry Dev Dependencies
 from anywhere in project:  
@@ -13,6 +15,10 @@ poetry add --group=dev black isort pdoc pylint pyright pytest pytest-cov
 - auto-documentation: `pdoc`
 
 
+---------------------------------------------
+
+# General
+
 ## Run Pre-Commit Hook Manually
 from root of project:  
 ```zsh
@@ -24,4 +30,17 @@ git hook run pre-commit
 ```
 (using local alias: `ghk pre-commit`)
 
+____________________________________________
+
+
+# Workarounds
+Poetry, if it downloads a bad hash does not try to automatically re-download said hash nor do the built in commands succeed in clearing the cache.
+The following pipeline will take all the reported downloads for which the hash wasn't found, find them in the folder that Poetry keeps them, and then, with confirmation request, delete those hashes.
+Just pipe an install command into it.  e.g. `poetry install foo | poethashnotfoundworkaround` and continue to re-run the line until it stops prompting you to delete the bad hashes.
+
+**Note**: this may require the `POETRY_CACHE_DIR` variable be manually set, e.g. in your `.zshenv`
+
+```zsh
+alias poethashnotfoundworkaround='rg "not found in known hashes" | choose -f "archive" 1 | choose 0 | xargs -I_ fd _ $POETRY_CACHE_DIR | xargs -o rm -i'
+```
 
