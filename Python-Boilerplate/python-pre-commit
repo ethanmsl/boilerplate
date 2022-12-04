@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
-# ^ Note the above "shebang" line. This says "This is an executable shell script"
+# ^ uses `env` command (viat that path) to get path variables and then call `bash`
+#   according to first occurence found
+#
 # Name this script "pre-commit" and place it in the ".git/hooks/" directory
 
 
 ##====================================================================================##
 # If any command fails, exit immediately with that command's exit status
+# Exit if an attempt to expand an unset variable
+# Write output to stdout
 set -euo pipefail
 ##====================================================================================##
 
