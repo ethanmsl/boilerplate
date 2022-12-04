@@ -43,58 +43,57 @@ package_name=
 ##====================================================================================##
 echo -e "${DARK_GRAY}==============${YELLOW}Beginning of Pre-Commit Hook Script${DARK_GRAY}===============${NC}"
 
-# Run black against all code in the `source_code` directory
+# Run black against all code in the `src/` & `tests/` directories
 echo -e "${DARK_GRAY}================================================================${NC}"
 echo -e "${YELLOW}running Black...${NC}"
 echo
-black SRC --check
+black src/ tests/ --check
 echo
-echo -e "${GREEN}Black formatting check passed!${NC}"
+echo -e "${GREEN}Black passed!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
-# Run Pylint against all code in the `source_code` directory
+# Run Pylint against all code in the `src/` & `tests/` directories
 echo -e "${DARK_GRAY}================================================================${NC}"
 echo -e "${YELLOW}running Pylint...${NC}"
 echo
-pylint src
+pylint src/ tests/
 echo
-echo -e "${GREEN}Pylint 'scent' checks passed!${NC}"
+echo -e "${GREEN}Pylint passed!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
-# Run Pyright for errors against all code in the `source_code` directory
+# Run Pyright for errors against all code in the `src/` & `tests/` directories
 echo -e "${DARK_GRAY}================================================================${NC}"
 echo -e "${YELLOW}running Pyright for Errors...${NC}"
 echo
-pyright
+pyright src/ tests/
 echo
-echo -e "${GREEN}Pyright Error check passed!${NC}"
+echo -e "${GREEN}Pyright Error-check passed!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
-# Run Pyright for completness against all code in the `source_code` directory
+# Run Pyright for completness against the *installed package*
 echo -e "${DARK_GRAY}================================================================${NC}"
-echo -e "${YELLOW}running Pyright for Completeness...${NC}"
+echo -e "${YELLOW}running Pyright for Type-Completeness on installed package...${NC}"
 echo
 pyright --verifytypes $package_name
-# NOTE: not sure how to get it to use current package automatically
 echo
-echo -e "${GREEN}Pyright Completeness analysis complete.${NC}"
+echo -e "${GREEN}Pyright Type-Completeness report (for installed package) available.${NC}"
 echo -e "${LIGHT_GREEN}(See above for results)${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
-# Run Pytest against all code in the `source_code` directory
+# Run Pytest; running all `test_.*` patterned files in the `tets/` directory
 echo -e "${DARK_GRAY}================================================================${NC}"
 echo -e "${YELLOW}running Pytest...${NC}"
 echo
-pytest
+pytest tests/
 echo
 echo -e "${GREEN}Pytest passed!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
-# Run Coverage (pytest-extension)
+# Run Coverage
 echo -e "${DARK_GRAY}================================================================${NC}"
-echo -e "${YELLOW}running Coverage (pytest-cov)...${NC}"
+echo -e "${YELLOW}running Coverage...${NC}"
 echo
-coverage report --show-missing --fail-under=100
+coverage report --include='src/*' --show-missing --fail-under=100
 echo
 echo -e "${GREEN}Coverage passed!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
@@ -112,7 +111,7 @@ echo -e "${DARK_GRAY}===========================================================
 echo -e "${DARK_GRAY}================================================================${NC}"
 echo -e "${YELLOW}running Pdoc...${NC}"
 echo
-pdoc $package_name tests --output-directory=docs/
+pdoc src/* tests/ --output-directory=docs/
 echo
 echo -e "${GREEN}Pdoc docs generated!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
