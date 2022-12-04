@@ -41,6 +41,8 @@ package_name=
 
 
 ##====================================================================================##
+echo -e "${DARK_GRAY}==============${YELLOW}Beginning of Pre-Commit Hook Script${DARK_GRAY}===============${NC}"
+
 # Run black against all code in the `source_code` directory
 echo -e "${DARK_GRAY}================================================================${NC}"
 echo -e "${YELLOW}running Black...${NC}"
@@ -114,5 +116,8 @@ pdoc $package_name tests --output-directory=docs/
 echo
 echo -e "${GREEN}Pdoc docs generated!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
+
+
+echo -e "${DARK_GRAY}=================${LIGHT_GREEN}End of Pre-Commit Hook Script${DARK_GRAY}==================${NC}"
 ##====================================================================================##
 # END OF SCRIPT
