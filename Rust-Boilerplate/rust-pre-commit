@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# ^ uses `env` command (viat that path) to get path variables and then call `bash`
+# ^ uses `env` command (via that path) to get path variables and then call `bash`
 #   according to first occurence found
 #
 # Name this script "pre-commit" and place it in the ".git/hooks/" directory
