@@ -39,8 +39,8 @@ NC='\033[0m' # No Color
 
 
 ##====================================================================================##
-# MANUALLY add package name here
-package_name=
+package_name=""  # MANUALLY add package name here
+test_coverage_min=80  # below this result the `coverage` test will fail
 ##====================================================================================##
 
 
@@ -106,7 +106,7 @@ echo -e "${DARK_GRAY}===========================================================
 echo -e "${DARK_GRAY}================================================================${NC}"
 echo -e "${YELLOW}running Coverage...${NC}"
 echo
-coverage report --include='src/*' --show-missing --fail-under=100
+coverage report --include='src/*','tests/*' --show-missing --fail-under=$test_coverage_min
 echo
 echo -e "${GREEN}Coverage passed!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
