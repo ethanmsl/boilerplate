@@ -120,6 +120,16 @@ echo
 echo -e "${GREEN}Poetry-Check passed!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
+# (re)Generate requirements*.txt matching poetry.lock
+echo -e "${DARK_GRAY}================================================================${NC}"
+echo -e "${YELLOW}running Poetry-Export...${NC}"
+echo
+poetry export --format=requirements.txt --output=requirements.txt
+poetry export --format=requirements.txt --output=requirements-dev.txt --with=dev
+echo
+echo -e "${GREEN}'requirements.txt' & 'requirements-dev.txt' generated!${NC}"
+echo -e "${DARK_GRAY}================================================================${NC}"
+
 # Generate fresh docs with pdoc
 echo -e "${DARK_GRAY}================================================================${NC}"
 echo -e "${YELLOW}running Pdoc...${NC}"
