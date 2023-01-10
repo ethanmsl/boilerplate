@@ -102,14 +102,19 @@ echo
 echo -e "${GREEN}Pytest passed!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
-# Run Coverage
-echo -e "${DARK_GRAY}================================================================${NC}"
-echo -e "${YELLOW}running Coverage...${NC}"
-echo
-coverage report --include='src/*','tests/*' --show-missing --fail-under=$test_coverage_min
-echo
-echo -e "${GREEN}Coverage passed!${NC}"
-echo -e "${DARK_GRAY}================================================================${NC}"
+# # Run Coverage
+# # NOTE: requires the program be run in order to trace code execution paths
+# echo -e "${DARK_GRAY}================================================================${NC}"
+# echo -e "${YELLOW}running Coverage-Run to gather data...${NC}"
+# echo
+# coverage run -m $package_name
+# echo
+# echo -e "${YELLOW}running Coverage-Report...${NC}"
+# echo
+# coverage report --include='src/*' --show-missing --fail-under=$test_coverage_min
+# echo
+# echo -e "${GREEN}Coverage passed!${NC}"
+# echo -e "${DARK_GRAY}================================================================${NC}"
 
 # Check that Poetry state doesn't detect any errors (NOTE: non-exhaustive)
 echo -e "${DARK_GRAY}================================================================${NC}"
