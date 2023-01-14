@@ -115,8 +115,8 @@ echo -e "${DARK_GRAY}===========================================================
 echo -e "${DARK_GRAY}================================================================${NC}"
 echo -e "${YELLOW}running Poetry-Export...${NC}"
 echo
-poetry export --format=requirements.txt --output=requirements.txt
-poetry export --format=requirements.txt --output=requirements-dev.txt --with=dev
+poetry export --format=requirements.txt --output=requirements.txt --without=dev
+poetry export --format=requirements.txt --output=requirements-dev.txt --only=dev
 echo
 echo -e "${GREEN}'requirements.txt' & 'requirements-dev.txt' generated!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
@@ -125,7 +125,7 @@ echo -e "${DARK_GRAY}===========================================================
 echo -e "${DARK_GRAY}================================================================${NC}"
 echo -e "${YELLOW}running Pdoc...${NC}"
 echo
-pdoc src/* tests/ --output-directory=docs/
+pdoc src/* tests/ --output-directory=dev_docs/
 echo
 echo -e "${GREEN}Pdoc docs generated!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
