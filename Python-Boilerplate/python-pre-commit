@@ -40,6 +40,7 @@ NC='\033[0m' # No Color
 
 ##====================================================================================##
 package_name=""  # MANUALLY add package name here
+docs_dir="dev_docs"  # directory for `pdoc` to add files
 test_coverage_min=80  # below this result the `coverage` test will fail
 ##====================================================================================##
 
@@ -123,9 +124,10 @@ echo -e "${DARK_GRAY}===========================================================
 
 # Generate fresh docs with pdoc
 echo -e "${DARK_GRAY}================================================================${NC}"
-echo -e "${YELLOW}running Pdoc...${NC}"
+echo -e "${YELLOW}clearing '${docs_dir}/' and running Pdoc...${NC}"
 echo
-pdoc src/* tests/ --output-directory=dev_docs/
+rm -rf ${docs_dir}/
+pdoc src/* tests/ --output-directory=${docs_dir}/
 echo
 echo -e "${GREEN}Pdoc docs generated!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
