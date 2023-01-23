@@ -48,15 +48,6 @@ test_coverage_min=80  # below this result the `coverage` test will fail
 ##====================================================================================##
 echo -e "${DARK_GRAY}==============${YELLOW}Beginning of Pre-Commit Hook Script${DARK_GRAY}===============${NC}"
 
-# Run black against all code in the `src/` & `tests/` directories
-echo -e "${DARK_GRAY}================================================================${NC}"
-echo -e "${YELLOW}running Black...${NC}"
-echo
-black src/ tests/ --check
-echo
-echo -e "${GREEN}Black passed!${NC}"
-echo -e "${DARK_GRAY}================================================================${NC}"
-
 # Run isort against all code in the `src/` & `tests/` directories
 echo -e "${DARK_GRAY}================================================================${NC}"
 echo -e "${YELLOW}running isort...${NC}"
@@ -64,6 +55,15 @@ echo
 isort src/ tests/ --check-only --diff
 echo
 echo -e "${GREEN}Isort passed!${NC}"
+echo -e "${DARK_GRAY}================================================================${NC}"
+
+# Run black against all code in the `src/` & `tests/` directories
+echo -e "${DARK_GRAY}================================================================${NC}"
+echo -e "${YELLOW}running Black...${NC}"
+echo
+black src/ tests/ --check
+echo
+echo -e "${GREEN}Black passed!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
 # Run Pylint against all code in the `src/` & `tests/` directories
