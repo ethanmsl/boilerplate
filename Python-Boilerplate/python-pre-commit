@@ -84,15 +84,16 @@ echo
 echo -e "${GREEN}Pyright Error-check passed!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
-# Run Pyright for completness against the *installed package*
-echo -e "${DARK_GRAY}================================================================${NC}"
-echo -e "${YELLOW}running Pyright for Type-Completeness on installed package...${NC}"
-echo
-pyright --verifytypes $package_name
-echo
-echo -e "${GREEN}Pyright Type-Completeness report (for installed package) available.${NC}"
-echo -e "${LIGHT_GREEN}(See above for results)${NC}"
-echo -e "${DARK_GRAY}================================================================${NC}"
+# # for well-typing python *libraries*:
+# # Run Pyright for completness against the *installed package*
+# echo -e "${DARK_GRAY}================================================================${NC}"
+# echo -e "${YELLOW}running Pyright for Type-Completeness on installed package...${NC}"
+# echo
+# pyright --verifytypes $package_name
+# echo
+# echo -e "${GREEN}Pyright Type-Completeness report (for installed package) available.${NC}"
+# echo -e "${LIGHT_GREEN}(See above for results)${NC}"
+# echo -e "${DARK_GRAY}================================================================${NC}"
 
 # Run Pytest; running all `test_.*` patterned files in the `tests/` directory
 echo -e "${DARK_GRAY}================================================================${NC}"
