@@ -94,7 +94,7 @@ echo -e "${GREEN}Pyright Type-Completeness report (for installed package) availa
 echo -e "${LIGHT_GREEN}(See above for results)${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
-# Run Pytest; running all `test_.*` patterned files in the `tets/` directory
+# Run Pytest; running all `test_.*` patterned files in the `tests/` directory
 echo -e "${DARK_GRAY}================================================================${NC}"
 echo -e "${YELLOW}running Pytest...${NC}"
 echo
