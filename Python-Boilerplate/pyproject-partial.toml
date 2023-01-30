@@ -1,10 +1,16 @@
 
 
+# # declares name of CLI app and where the insertion point is
+# [tool.poetry.scripts]
+# cli-app-name = "pkg_name.commands:app"
+
+
 [tool.isort]
 # compatibility with Black formatter
 profile = "black"
 
 
+# # example of global disablement for Pylint
 # [tool.pylint]
 # disable = [
 #     "R0903",  # Too few public methods
