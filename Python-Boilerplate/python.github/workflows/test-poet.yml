@@ -46,19 +46,19 @@ jobs:
       #----------------------------------------------
       - name: Install dependencies
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: poetry install --no-interaction --no-root
-      - name: report no cache used
-        run: echo 'poetry installed from scratch'
+        run: |
+          poetry install --no-interaction --no-root
+          echo 'poetry installed from scratch'
       #----------------------------------------------
       # install your root project, if required
       #----------------------------------------------
       - name: Install project
         run: poetry install --no-interaction
+      - name: where are we
+        run: pwd
       #----------------------------------------------
       #              run test suite
       #----------------------------------------------
-      - name: where are we
-        run: pwd
       - name: activate .venv
         run: source .venv/bin/activate
       - name: isort
