@@ -10,12 +10,12 @@
 profile = "black"
 
 
-[tool.pylint]
-disable = [
-    # Black cleans trailing whitespace outside of docstrings,
-    # inside of docstrings it is used for Markdown formatting
-    "C0303",  # trailing-whitespace
-]
+# # example repo-wide pylint disablement section
+# [tool.pylint]
+# disable = [
+#     "C0303",  # trailing-whitespace
+#     "R0903",  # too-few-public-methods
+# ]
 
 [tool.pylint.format]
 # line length to match Black formatter
