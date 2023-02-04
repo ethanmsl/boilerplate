@@ -97,7 +97,7 @@ echo -e "${YELLOW}running cargo-Doc...${NC}"
 echo
 cargo doc --workspace
 echo
-echo -e "${GREEN}cargo-doc docs generated!${NC}"
+echo -e "${GREEN}cargo-Doc docs generated!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
 echo -e "${DARK_GRAY}=================${LIGHT_GREEN}End of Pre-Commit Hook Script${DARK_GRAY}==================${NC}"
