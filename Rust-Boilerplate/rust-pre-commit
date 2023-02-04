@@ -55,13 +55,13 @@ echo
 echo -e "${GREEN}cargo-Check passed!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
-# Run `cargo test` against all code in the `src/` directory *EXCEPT* `main.rs`
+# Run `cargo fmt --check` against all code in the `src/` directory
 echo -e "${DARK_GRAY}================================================================${NC}"
-echo -e "${YELLOW}running cargo-Test (excluding `main.rs`)...${NC}"
+echo -e "${YELLOW}running cargo-Fmt...${NC}"
 echo
-cargo test
+cargo fmt --check
 echo
-echo -e "${GREEN}cargo-Test passed!${NC}"
+echo -e "${GREEN}cargo-Fmt passed!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
 # Run `cargo clippy` against all code in the `src/` directory
@@ -73,13 +73,13 @@ echo
 echo -e "${GREEN}cargo-Clippy passed!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
-# Run `cargo fmt --check` against all code in the `src/` directory
+# Run `cargo test` against all code in the `src/` directory *EXCEPT* `main.rs`
 echo -e "${DARK_GRAY}================================================================${NC}"
-echo -e "${YELLOW}running cargo-Fmt...${NC}"
+echo -e "${YELLOW}running cargo-Test (excluding `main.rs`)...${NC}"
 echo
-cargo fmt --check
+cargo test
 echo
-echo -e "${GREEN}cargo-Fmt passed!${NC}"
+echo -e "${GREEN}cargo-Test passed!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
 # Run `cargo doc` against all code in the `src/` directory
