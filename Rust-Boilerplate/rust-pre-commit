@@ -46,34 +46,43 @@ NC='\033[0m' # No Color
 ##====================================================================================##
 echo -e "${DARK_GRAY}==============${YELLOW}Beginning of Pre-Commit Hook Script${DARK_GRAY}===============${NC}"
 
-# Run `cargo check` against all code in the `src/` directory
+# Run `cargo check` against all packages in workspace
 echo -e "${DARK_GRAY}================================================================${NC}"
 echo -e "${YELLOW}running cargo-Check...${NC}"
 echo
-cargo check
+cargo check --workspace
 echo
 echo -e "${GREEN}cargo-Check passed!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
-# Run `cargo fmt --check` against all code in the `src/` directory
+# Run `cargo verify-project` to check correctness of `Cargo.toml`
 echo -e "${DARK_GRAY}================================================================${NC}"
 echo -e "${YELLOW}running cargo-Fmt...${NC}"
 echo
-cargo fmt --check
+cargo verify-project
 echo
 echo -e "${GREEN}cargo-Fmt passed!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
-# Run `cargo clippy` against all code in the `src/` directory
+# Run `cargo fmt --check` against all packages and local dependencies
+echo -e "${DARK_GRAY}================================================================${NC}"
+echo -e "${YELLOW}running cargo-Fmt...${NC}"
+echo
+cargo fmt --all --check
+echo
+echo -e "${GREEN}cargo-Fmt passed!${NC}"
+echo -e "${DARK_GRAY}================================================================${NC}"
+
+# Run `cargo clippy` against all packages in workspace; fail on warnings
 echo -e "${DARK_GRAY}================================================================${NC}"
 echo -e "${YELLOW}running cargo-Clippy...${NC}"
 echo
-cargo clippy
+cargo clippy --workspace -- --deny warnings
 echo
 echo -e "${GREEN}cargo-Clippy passed!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
-# Run `cargo test` against all code in the `src/` directory *EXCEPT* `main.rs`
+# Run `cargo test` (NOTE: excludes `main.rs` file)
 echo -e "${DARK_GRAY}================================================================${NC}"
 echo -e "${YELLOW}running cargo-Test (excluding `main.rs`)...${NC}"
 echo
@@ -82,11 +91,11 @@ echo
 echo -e "${GREEN}cargo-Test passed!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
-# Run `cargo doc` against all code in the `src/` directory
+# Run `cargo doc` against all packages in workspace
 echo -e "${DARK_GRAY}================================================================${NC}"
 echo -e "${YELLOW}running cargo-Doc...${NC}"
 echo
-cargo doc
+cargo doc --workspace
 echo
 echo -e "${GREEN}cargo-doc docs generated!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
