@@ -1,0 +1,12 @@
+name = ""
+version = "0.1.0"
+description = ""
+edition = "2021"
+readme = "README.md"
+homepage = ""
+license = ""
+repository = "https://github.com/..."
+categories = []
+keywords = []
+authors = ["AUTHOR_NAME <AUTHOR_EMAIL@users.noreply.github.com>"]
+
