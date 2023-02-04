@@ -61,7 +61,7 @@ echo -e "${YELLOW}running cargo-Fmt...${NC}"
 echo
 cargo verify-project
 echo
-echo -e "${GREEN}cargo-Fmt passed!${NC}"
+echo -e "${GREEN}cargo-Verify_Project passed!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
 # Run `cargo fmt --check` against all packages and local dependencies
