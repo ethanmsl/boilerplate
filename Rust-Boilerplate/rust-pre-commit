@@ -57,7 +57,7 @@ echo -e "${DARK_GRAY}===========================================================
 
 # Run `cargo verify-project` to check correctness of `Cargo.toml`
 echo -e "${DARK_GRAY}================================================================${NC}"
-echo -e "${YELLOW}running cargo-Fmt...${NC}"
+echo -e "${YELLOW}running cargo-Verify_Project...${NC}"
 echo
 cargo verify-project
 echo
