@@ -33,6 +33,10 @@ git hook run pre-commit
 ____________________________________________
 
 
+# [Poetry Quick Reference](https://gist.github.com/ethanmsl/e5529d1e03c307a28b0c660f17bbf5ef) (gist link)
+
+____________________________________________
+
 # Workarounds
 Poetry, if it downloads a bad hash does not try to automatically re-download said hash nor do the built in commands succeed in clearing the cache.
 The following pipeline will take all the reported downloads for which the hash wasn't found, find them in the folder that Poetry keeps them, and then, with confirmation request, delete those hashes.
