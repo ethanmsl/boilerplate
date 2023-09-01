@@ -26,7 +26,7 @@ include = ["src"]
 exclude = [".venv",
     "src/experimental",
     "src/typestubs",
-  "**/__pycache__"
+    "**/__pycache__",
 ]
 # utilizing the fact that we've set Poetry `virtualenv.in-project` to true
 venvPath = "."
