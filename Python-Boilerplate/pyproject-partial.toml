@@ -10,12 +10,11 @@
 profile = "black"
 
 
-# # example repo-wide pylint disablement section
-# [tool.pylint]
-# disable = [
-#     "C0303",  # trailing-whitespace
-#     "R0903",  # too-few-public-methods
-# ]
+[tool.pylint]
+disable = [
+    # "C0303",  # trailing-whitespace -- interferes with docstring markdown
+    "R0903",  # too-few-public-methods -- interferes with type capture of program logic
+]
 
 [tool.pylint.format]
 # line length to match Black formatter
