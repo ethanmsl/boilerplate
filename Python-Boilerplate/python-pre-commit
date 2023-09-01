@@ -96,10 +96,12 @@ echo -e "${DARK_GRAY}===========================================================
 # echo -e "${DARK_GRAY}================================================================${NC}"
 
 # Run Pytest; running all `test_.*` patterned files in the `tests/` directory
+# NOTE: doctests are only run with addition `--doctest-modules`,
+#       which is typically specified in the `pyproject.toml`
 echo -e "${DARK_GRAY}================================================================${NC}"
 echo -e "${YELLOW}running Pytest...${NC}"
 echo
-pytest --cov-report term-missing --cov-fail-under=$test_coverage_min --cov=src tests/
+pytest --cov-report term-missing --cov-fail-under=$test_coverage_min --cov=src
 echo
 echo -e "${GREEN}Pytest passed!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
