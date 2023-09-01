@@ -62,9 +62,9 @@ jobs:
       - name: activate .venv
         run: source .venv/bin/activate
       - name: isort
-        run: poetry run isort src/ tests/ --check-only --dif
+        run: poetry run isort .
       - name: black
-        run: poetry run black src/ tests/ --check
+        run: poetry run black .
       - name: pylint
         run: poetry run pylint src/ tests/
       - name: pyright
