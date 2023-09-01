@@ -47,3 +47,34 @@ addopts = "--doctest-modules"
 pythonpath = [
     "src",
 ]
+
+
+[tool.ruff]
+# Allow imports relative to the "src" and "test" directories.
+src = ["src", "test"]
+
+# warn, but recommend restructuring for unused `__init__.py` module imports
+ignore-init-module-imports = true
+
+select = ["ALL"]
+ignore = [
+    "D203",  # One blank line before class -- conflicts with "D211"
+    "D213",  # Multiline docstrings start on second line -- conflicts with "D212"
+]
+
+[tool.ruff.extend-per-file-ignores]
+# ignore these rules in the file defining CLI commands
+"commands.py" =[
+    "FBT001",  # No `bool` params -- used to specify CLI arguments with Typer module
+    "FBT002",  # No `bool` param defaults -- CLI argument values in Typer module
+    "UP007",   # No `Option[..]` Type-syntax -- used by Typer module
+]
+# ignore these rules in the file testing CLI commands
+"test_commands.py" =[
+    "FBT003",  # No `bool` in func calls -- functions being tested represent CLI args
+]
+# ignore these rules in the file testing CLI commands
+"test_*.py" =[
+    "S101",     # Use of `assert` -- intended in tests files
+    "PLR2004",  # Magic Value used in comparison -- impractical rule in test files
+]

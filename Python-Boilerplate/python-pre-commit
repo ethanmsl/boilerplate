@@ -68,6 +68,15 @@ echo
 echo -e "${GREEN}Black formatting applied!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
+# Run Ruff against all code in the directories specified in the `pyproject.toml`
+echo -e "${DARK_GRAY}================================================================${NC}"
+echo -e "${YELLOW}running Ruff...${NC}"
+echo
+ruff check .
+echo
+echo -e "${GREEN}Ruff passed!${NC}"
+echo -e "${DARK_GRAY}================================================================${NC}"
+
 # Run Pylint against all code in the `src/` & `tests/` directories
 echo -e "${DARK_GRAY}================================================================${NC}"
 echo -e "${YELLOW}running Pylint...${NC}"
