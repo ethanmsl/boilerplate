@@ -51,7 +51,7 @@ pythonpath = [
 
 [tool.ruff]
 # Allow imports relative to the "src" and "test" directories.
-src = ["src", "test"]
+src = ["src", "tests"]
 
 # warn, but recommend restructuring for unused `__init__.py` module imports
 ignore-init-module-imports = true
