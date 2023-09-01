@@ -43,7 +43,7 @@ executionEnvironments = [
 
 [tool.pytest.ini_options]
 # adds the following paths to pythonpath, specified relative to root dir
-addopts = "--doctest-modules"
+addopts = "--doctest-modules"  # run doctests
 pythonpath = [
     "src",
 ]
