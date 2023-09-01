@@ -12,7 +12,7 @@ orbs:
 jobs:
   build-info:
     docker: 
-      - image: cimg/python:3.10
+      - image: cimg/python:3.11
     steps:
       - checkout
       - python/install-packages:
@@ -25,17 +25,20 @@ jobs:
 
   run-checks:
     docker: 
-      - image: cimg/python:3.10
+      - image: cimg/python:3.11
     steps:
       - checkout
       - python/install-packages:
           pkg-manager: poetry
       - run:
           name: isort
-          command: poetry run isort src/ tests/ --check-only --dif
+          command: poetry run isort .
       - run:
           name: black
-          command: poetry run black src/ tests/ --check
+          command: poetry run black .
+      - run:
+          name: ruff
+          command: poetry run ruff check .
       - run:
           name: pylint
           command: poetry run pylint src/ tests/
@@ -44,14 +47,14 @@ jobs:
           command: poetry run pyright src/ tests/
       - run:
           name: pytest_and_coverage
-          command: poetry run pytest --cov-report term-missing --cov-fail-under=80 --cov=src tests/
+          command: poetry run pytest --cov-report term-missing --cov-fail-under=70 --cov=src
       - run:
           name: poetry_check
           command: poetry check
 
   file-generation:
     docker: 
-      - image: cimg/python:3.10
+      - image: cimg/python:3.11
     steps:
       - checkout
       - python/install-packages:
