@@ -53,7 +53,7 @@ pythonpath = [
 # Allow imports relative to the "src" and "test" directories.
 src = ["src", "tests"]
 
-# warn, but recommend restructuring for unused `__init__.py` module imports
+# warn only, but recommend restructuring for unused `__init__.py` module imports
 ignore-init-module-imports = true
 
 select = ["ALL"]
@@ -63,17 +63,17 @@ ignore = [
 ]
 
 [tool.ruff.extend-per-file-ignores]
-# ignore these lints in a file that will be specifying CLI args (via Typer decorators)
+# this file contains CLI args expressed as function parameters (via Typer decorators)
 "commands.py" =[
     "FBT001",  # No `bool` params -- used to specify CLI arguments with Typer module
     "FBT002",  # No `bool` param defaults -- CLI argument values in Typer module
     "UP007",   # No `Option[..]` Type-syntax -- used by Typer module
 ]
-# ignore these lints in a file that will be testing CLI arg defining functions
+# this file will be testing functions taking de facto CLI args (re: Typer decorators)
 "test_commands.py" =[
     "FBT003",  # No `bool` in func calls -- functions being tested represent CLI args
 ]
-# ignore these lints in all test files
+# test files will of course use asserts and 'ad hoc' constants
 "test_*.py" =[
     "S101",     # Use of `assert` -- intended in tests files
     "PLR2004",  # Magic Value used in comparison -- impractical rule in test files
