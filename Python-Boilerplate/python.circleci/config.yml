@@ -24,18 +24,20 @@ jobs:
           command: poetry show --tree
 
   run-checks:
-    docker: 
+    docker:
       - image: cimg/python:3.11
     steps:
+        # NOTE: isort & black only *test* here
+        #       (any autoformatting needs to work on the pushed code, not this image)
       - checkout
       - python/install-packages:
           pkg-manager: poetry
       - run:
           name: isort
-          command: poetry run isort .
+          command: poetry run isort src/ tests/ --check-only --dif
       - run:
           name: black
-          command: poetry run black .
+          command: poetry run black src/ tests/ --check
       - run:
           name: ruff
           command: poetry run ruff check .

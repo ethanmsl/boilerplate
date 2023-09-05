@@ -59,12 +59,14 @@ jobs:
       #----------------------------------------------
       #                run test suite
       #----------------------------------------------
+        # NOTE: isort & black only *test* here
+        #       (any autoformatting needs to work on the pushed code, not this image)
       - name: activate .venv
         run: source .venv/bin/activate
       - name: isort
-        run: poetry run isort .
+        run: poetry run isort src/ tests/ --check-only --dif
       - name: black
-        run: poetry run black .
+        run: poetry run black src/ tests/ --check
       - name: ruff
         run: poetry run ruff check .
       - name: pylint
