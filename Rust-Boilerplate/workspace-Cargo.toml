@@ -1,0 +1,174 @@
+[workspace]
+members = ["claps", "datapop", "derives"]
+resolver = "2"
+
+# [package]
+# name = "exemplars"
+# version = "0.1.0"
+# edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[workspace.dependencies]
+# Error Handling
+color-eyre = "0.6.2"
+error-stack = { version = "0.4.1", features = ["serde", "spantrace", "hooks"] }
+thiserror = "1.0.56"
+
+# Logging
+color-spantrace = "0.2.1" # <-- tracing-error
+secrecy = "0.8.0"
+spandoc = "0.2.2" # greatly improves usability of spans
+tracing = "0.1.40"
+tracing-appender = "0.2.3"
+tracing-error = "0.2.0"
+tracing-flame = "0.2.0"
+tracing-forest = "0.1.6"
+tracing-subscriber = { version = "0.3.18", features = [
+        "env-filter",
+        "serde",
+        "json",
+        "chrono",
+        "tracing-serde",
+] }
+tracing-timing = "0.6.0"
+
+# Ergonomics
+## Data Structure Behavior
+derive_builder = "0.12.0"
+derive_more = "0.99.17"
+derive-new = "0.6.0"
+educe = "0.5.11"
+strum = { version = "0.25.0", features = ["derive", "strum_macros"] }
+variantly = "0.4.0"
+## Struct Populators
+serde = { version = "1.0.195", features = ["derive"] }
+serde_json = "1.0.111"
+validator = { version = "0.16.1", features = ["derive", "phone"] }
+
+## General Methods
+itertools = "0.12.0"
+tap = "1.0.1"
+
+# File System
+assert_fs = "1.1.1"
+csv = "1.3.0"
+dirs = "5.0.1"
+dotenvy = "0.15.7"
+tempfile = "3.9.0"
+toml = "0.8.8"
+walkdir = "2.4.0"
+
+# Time
+chrono = { version = "0.4.31", features = ["serde", "arbitrary"] }
+hifitime = { version = "3.9.0", features = ["reqwest", "serde"] }
+
+# http
+## tokio::semaphore
+governor = "0.6.0"
+reqwest = { version = "0.11.23", features = ["serde_json"] }
+reqwest-retry = "0.3.0"
+
+# DataFrames
+polars = { version = "0.36.2", features = [
+        "ndarray",
+        "lazy",
+        "serde",
+        "json",
+        "docs-selection",
+] }
+## Surreal
+# Visualization
+plotters = "0.3.5"
+
+# Parallelism (logical)
+rayon = "1.8.0"
+tokio = { version = "1.35.1", features = [
+        "tracing",
+        "sync",
+        "fs",
+        "macros",
+        "time",
+        "full",
+        "test-util",
+] }
+
+# Parsing
+logos = "0.13.0"
+regex = "1.10.2"
+winnow = { version = "0.5.34", features = ["debug"] }
+
+# CLI
+clap = { version = "4.4.16", features = [
+        "env",
+        "derive",
+        "unicode",
+        "string",
+        "wrap_help",
+        #        "debug",
+] }
+dialoguer = { version = "0.11.0", features = [
+        "fuzzy-matcher",
+        "fuzzy-select",
+        "history",
+        "completion",
+] }
+indicatif = { version = "0.17.7", features = ["rayon", "tokio"] }
+
+# WASM
+##egui
+##eframe
+##tracing-wasm = "0.2.1"
+
+# Math
+nalgebra = "0.32.3"
+ndarray = { version = "0.15.6", features = ["rayon", "serde", "docs", "test"] }
+petgraph = { version = "0.6.4", features = [
+        "serde",
+        "generate",
+        "quickcheck",
+        "serde_derive",
+] }
+rand = { version = "0.8.5", features = ["serde"] }
+raphtory = { version = "0.7.0", features = ["vectors", "io", "search"] }
+rustworkx-core = "0.13.2"
+uom = { version = "0.35.0", features = [
+        "serde",
+        "u8",
+        "u16",
+        "u32",
+        "u64",
+        "i64",
+        "complex64",
+        "rational64",
+] }
+
+
+# Other
+enum_dispatch = "0.3.12"
+fakeit = "1.2.0"
+once_cell = "1.19.0"
+indoc = "2.0.4"
+
+
+# [dev-dependencies]
+# Testing
+arbitrary = { version = "1.3.2", features = ["derive"] }
+pretty_assertions = "1.4.0"
+quickcheck = "1.0.3"
+quickcheck_macros = "1.0.0"
+insta = { version = "1.34.0", features = [
+        "csv",
+        "json",
+        "regex",
+        "serde",
+        "toml",
+        "walkdir",
+        "yaml",
+] }
+wiremock = "0.5.22"
+
+# Profilers
+##dhat
+##divan
+##flamegraph
