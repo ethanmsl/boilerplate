@@ -1,0 +1,94 @@
+[project]
+name = ""
+version = "0.1.0"
+description = ""
+authors = [
+    { name = "Ethan Skowronski-Lutz", email = "33399972+ethanmsl@users.noreply.github.com" }
+]
+dependencies = []
+readme = "README.md"
+requires-python = ">= 3.12"
+
+[project.scripts]
+"___commandname___" = "_____.commands:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "pdoc>=14.4.0",
+    "pyright>=1.1.359",
+    "pytest>=8.1.1",
+    "pytest-cov>=5.0.0",
+    "bandit>=1.7.8",
+    "ruff>=0.4.1",
+    "ruff-lsp>=0.0.53",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/_______"]
+
+[tool.pyright]
+include = ["src"]
+exclude = [".venv", "src/experimental", "src/typestubs", "**/__pycache__"]
+# utilizing the fact that we've set Poetry `virtualenv.in-project` to true
+venvPath = "."
+venv = ".venv"
+typeCheckingMode = "basic"    # "off", "basic", "strict"
+reportMissingImports = true
+reportMissingTypeStubs = true
+executionEnvironments = [{ root = "src" }]
+
+[tool.pytest.ini_options]
+# adds the following paths to pythonpath, specified relative to root dir
+pythonpath = ["src"]
+
+[tool.ruff]
+# Allow imports relative to the "src" and "test" directories.
+src = ["src", "tests"]
+line-length = 120
+
+# warn, but recommend restructuring for unused `__init__.py` module imports
+lint.ignore-init-module-imports = true
+lint.select = ["ALL"]
+lint.ignore = [
+        "D203", # One blank line before class -- conflicts with "D211"
+        "D213", # Multiline docstrings start on second line -- conflicts with "D212"
+        "COM812", # missing-trailing-line-comma -- `ruff` recommends disabling to prevent conflicts
+        "ISC001", # single-line-implicit-string-concatenation -- `ruff` recommends disabling to prevent conflicts
+        "ANN101", # wants type for `self`; to be deprecated -- silly, also difficult due to circularity issues
+        "T201", # no print statements allowed -- prints are useful for communicating with user
+]
+[tool.ruff.lint.extend-per-file-ignores]
+# ignore these lints in a file that will be specifying CLI args (via Typer decorators)
+"commands.py" = [
+        "FBT001", # No `bool` params -- used to specify CLI arguments with Typer module
+        "FBT002", # No `bool` param defaults -- CLI argument values in Typer module
+        "UP007",  # No `Option[..]` Type-syntax -- used by Typer module
+]
+# ignore these lints in a file that will be testing CLI arg defining functions
+"test_commands.py" = [
+        "FBT003", # No `bool` in func calls -- functions being tested represent CLI args
+]
+# ignore these lints in all test files
+"test_*.py" = [
+        "S101",    # Use of `assert` -- intended in tests files
+        "PLR2004", # Magic Value used in comparison -- impractical rule in test files
+]
+# ignore these lints in a file conversion to a Jupyter Notebook ("jupytext file")
+"*.ju.py" = [
+        "T201", # "print found"
+        "E402", # "module level import not at top of file"
+        # "ERA001", # "commented out code" - this can be confused by jupytext syntax
+]
+"__init__.py" = [
+        "F401", # import not used -- inits are definign namespace for module
+        "D104", # missing docstring -- often not useful for thes efiles
+]
+
