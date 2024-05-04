@@ -11,14 +11,11 @@ resolver = "2"
 
 [workspace.dependencies]
 # Error Handling
-color-eyre = "0.6.2"
-error-stack = { version = "0.4.1", features = ["serde", "spantrace", "hooks"] }
-thiserror = "1.0.56"
+error-stack = { version = "0.4.1", features = ["serde", "spantrace", "hooks"] }  # error-report framework
+# <see_below>     derive_more::error
 
 # Logging
-color-spantrace = "0.2.1" # <-- tracing-error
-secrecy = "0.8.0"
-spandoc = "0.2.2" # greatly improves usability of spans
+secrecy = "0.8.0"  # prevents secrets from being revealed in logs
 tracing = "0.1.40"
 tracing-appender = "0.2.3"
 tracing-error = "0.2.0"
@@ -47,11 +44,11 @@ serde_json = "1.0.111"
 validator = { version = "0.16.1", features = ["derive", "phone"] }
 
 ## General Methods
-itertools = "0.12.0"
-tap = "1.0.1"
+itertools = "0.12.0"  # general iterator extension
+#tap = "1.0.1"         # .pipe() & .tap() methods
 
 # File System
-assert_fs = "1.1.1"
+ssert_fs = "1.1.1"
 csv = "1.3.0"
 dirs = "5.0.1"
 dotenvy = "0.15.7"
@@ -121,7 +118,8 @@ indicatif = { version = "0.17.7", features = ["rayon", "tokio"] }
 ##tracing-wasm = "0.2.1"
 
 # Math
-nalgebra = "0.32.3"
+faer = { version = "0.18.2", features = ["rayon", "serde", "perf-warn"] }
+nalgebra = "0.32.3
 ndarray = { version = "0.15.6", features = ["rayon", "serde", "docs", "test"] }
 petgraph = { version = "0.6.4", features = [
         "serde",
