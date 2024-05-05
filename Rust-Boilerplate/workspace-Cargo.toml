@@ -15,7 +15,8 @@ error-stack = { version = "0.4.1", features = ["serde", "spantrace", "hooks"] } 
 # <see_below>     derive_more::error
 
 # Logging
-async-backtrace = "0.2.7"
+async-backtrace = "0.2.7" # hierarchical graph backtrace
+console-subscriber = "0.2.0"  # RUSTFLAGS="--cfg tokio_unstable" -- alteranate tracing subscriber that also works with tokio-console
 secrecy = "0.8.0"  # prevents secrets from being revealed in logs
 tracing = "0.1.40"
 tracing-appender = "0.2.3"
@@ -171,3 +172,7 @@ wiremock = "0.5.22"
 ##dhat
 ##divan
 ##flamegraph
+
+# for use with "console-subsriber"
+[build]
+rustflags = ["--cfg", "tokio_unstable"]
