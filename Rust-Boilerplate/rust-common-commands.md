@@ -1,3 +1,17 @@
+# Rust Useful Commands 
+
+
+## Maintenance
+### Cargo clean all immediate sub-directories (can be a lot of space
+```sh
+fd Cargo.toml --max-depth 2 --exec cargo clean --manifest-path
+```
+
+
+
+
+# Outdated:
+## TODO(add new initialization flows)
 ----------------------------------------------
 
 # Initialization
