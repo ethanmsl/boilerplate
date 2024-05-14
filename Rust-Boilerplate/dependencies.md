@@ -1,3 +1,7 @@
+# General Dependencies Refs
+
+# Workspace Layout
+```toml
 [workspace]
 members = ["claps", "datapop", "derives"]
 resolver = "2"
@@ -9,41 +13,44 @@ resolver = "2"
 
 
 [workspace.dependencies]
+```
 # Error Handling
-# <see_below>     derive_more::error
+- derive_more::error
 
 # Logging
+- tracing
+ - tracing-subscriber--features=env-filter,serde,json,chrono,tracing-serde 
+ - console-subscriber
+   - println!("{}", entry.path().display());
+- secrecy
+
 async-backtrace
-# = "0.2.0"  # RUSTFLAGS="--cfg tokio_unstable" -- alteranate tracing subscriber that also works with tokio-console
-** console-subscriber
-# keep secrets out of logs
-** secrecy
-** tracing
 tracing-appender
 tracing-error
 tracing-flame
 tracing-forest
-** tracing-subscriber --features=env-filter,serde,json,chrono,tracing-serde
 tracing-timing
 
 # Ergonomics
 ## Data Structure Behavior
+- derive_more
+- serde --features=derive
+serde_json
 derive_builder
-** derive_more
 derive-new
 educe
 strum
 variantly
 ## Struct Populators
-** serde --features=derive
-serde_json
 validator --features=derive,phone
 
 ## General Methods
-** itertools
+- itertools
 tap
 
 # File System
+- walkdir
+globset
 assert_fs
 csv
 dirs
@@ -60,11 +67,14 @@ hifitime --features=reqwest,serde
 ## tokio::semaphore
 backon
 governor
-** reqwest --features=serde_json
-** reqwest-retry
+- reqwest --features=serde_json
+  - reqwest-retry
+
+## async
+dashmap
 
 # DataFrames
-** polars --features=lazy
+-  polars --features=lazy
                 ,ndarray,serde,json,docs-selection
 ## Surreal
 # Visualization
@@ -72,7 +82,7 @@ plotters
 
 # Parallelism (logical)
 ** rayon
-** tokio --fatures=features,macros,fs,time
+** tokio --features=features,macros,fs,time
         ,sync
         ,full
         ,test-util
@@ -89,8 +99,8 @@ dialoguer --features=fuzzy-matcher,fuzzy-select,history,completion
 indicatif --features=rayon,tokio
 
 # WASM
-egui
-** eframe
+- egui
+  - eframe
 tracing-wasm
 
 # Math
@@ -121,10 +131,10 @@ uom --features=
 
 # [dev-dependencies]
 # Testing
+- quickcheck
+  - quickcheck_macros
 arbitrary --features=derive
 pretty_assertions 
-** quickcheck
-** quickcheck_macros
 insta --features=
         csv,
         json,
