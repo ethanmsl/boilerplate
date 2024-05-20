@@ -1,5 +1,12 @@
 # Justfile (Convenience Command Runner)
 
+# local vars
+LOCAL_VAR_EXAMPLE:='yes, I am!'
+
+# rust vars
+RUST_LOG:= 'debug'
+RUST_BACKTRACE:= '1'
+RUSTFLAGS:='--cfg tokio_unstable'
 
 # home_dir := env_var('HOME')
 local_root := justfile_directory()
@@ -17,16 +24,40 @@ NC := '\033[0m'     # No Color
 _default:
         @ just --list --unsorted
 
-check:
-    cargo clippy
-    rust fmt
-    typos --exclude 'data/*'
-    committed
+# Initialize repository.
+init: && gen-env deps-ext
+    cargo build    
+    cargo doc
 
+# Linting, formatting, typo checking, etc.
+check:
+    -cargo clippy
+    -cargo fmt
+    -typos --exclude 'data/*'
+    -committed
+    -cargo sqlx prepare --check
+
+# Auto-fix errors picked up by check.
+[confirm]
+check-fix:
+     typos --exclude 'data/*' --write-changes
+
+# Clean up cargo build artifacts.
+[confirm]
+teardown:
+    cargo clean
+
+# Watch a file: compile & run on changes.
 watch file_to_run:
     cargo watch --quiet --clear --exec 'run --quiet --example {{file_to_run}}'
 
-[confirm]
-clean:
-    cargo clean
-    
+# List dependencies. (This command has dependencies.)
+deps-ext:
+    @echo "{{CYN}}List of external dependencies for this command runner and repo:"
+    xsv table ext_dependencies.csv
+
+# Generate a `.env` file from `template.env`.
+gen-env:
+    @echo "{{CYN}}The {{GRN}}.env DATABASE_URL value{{CYN}}will populate your database path when needed.  Please edit the file to manually specify."
+    @echo {{ if path_exists(".env") == "true" { `echo "\(.env file already exists\)"` } else { `cp 'template.env' '.env'; echo "\(.env file created\)"`} }}
+
