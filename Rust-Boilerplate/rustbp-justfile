@@ -25,7 +25,7 @@ _default:
         @ just --list --unsorted
 
 # Initialize repository.
-init: && gen-env deps-ext
+init: && deps-ext
     cargo build    
     cargo doc
 
@@ -35,7 +35,6 @@ check:
     -cargo fmt
     -typos --exclude 'data/*'
     -committed
-    -cargo sqlx prepare --check
 
 # Auto-fix errors picked up by check.
 [confirm]
@@ -56,8 +55,12 @@ deps-ext:
     @echo "{{CYN}}List of external dependencies for this command runner and repo:"
     xsv table ext_dependencies.csv
 
-# Generate a `.env` file from `template.env`.
-gen-env:
-    @echo "{{CYN}}The {{GRN}}.env DATABASE_URL value{{CYN}}will populate your database path when needed.  Please edit the file to manually specify."
-    @echo {{ if path_exists(".env") == "true" { `echo "\(.env file already exists\)"` } else { `cp 'template.env' '.env'; echo "\(.env file created\)"`} }}
+
+// Common 
+
+// add `gen-env` to `init`
+// # Generate a `.env` file from `template.env`.
+// gen-env:
+//     @echo "{{CYN}}The {{GRN}}.env DATABASE_URL value{{CYN}}will populate your database path when needed.  Please edit the file to manually specify."
+//     @echo {{ if path_exists(".env") == "true" { `echo "\(.env file already exists\)"` } else { `cp 'template.env' '.env'; echo "\(.env file created\)"`} }}
 
