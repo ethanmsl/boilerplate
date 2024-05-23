@@ -33,10 +33,10 @@ init: && deps-ext
 check:
     -cargo clippy
     -cargo fmt
-    -typos --exclude 'data/*'
+    -typos
     -committed
 
-# Auto-fix errors picked up by check.
+# Auto-fix errors picked up by check. (Manual exclusion of data folder as additional safeguard.)
 [confirm]
 check-fix:
      typos --exclude 'data/*' --write-changes
