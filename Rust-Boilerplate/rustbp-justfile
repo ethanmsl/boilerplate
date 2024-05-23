@@ -38,7 +38,7 @@ check:
 
 # Auto-fix errors picked up by check. (Manual exclusion of data folder as additional safeguard.)
 [confirm]
-check-fix:
+fix:
      typos --exclude 'data/*' --write-changes
 
 # Clean up cargo build artifacts.
