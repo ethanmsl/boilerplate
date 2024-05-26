@@ -12,6 +12,18 @@ resolver = "2"
 # edition = "2021"
 
 
+## Bundles
+- futures
+- tokio --features=features,macros,fs,time
+        ,sync
+        ,full
+        ,test-util
+- tokio_stream
+- tracing
+- tracing-subscriber--features=env-filter,serde,json,chrono,tracing-serde 
+
+
+
 [workspace.dependencies]
 ```
 # Error Handling
@@ -86,6 +98,8 @@ plotters
         ,sync
         ,full
         ,test-util
+   futures
+   tokio_stream
 
 # Parsing
 logos
