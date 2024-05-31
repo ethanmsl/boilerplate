@@ -1,7 +1,10 @@
 # Rust GitIgnores
 
 # ===================================
-# Custom GitIgnore
+# Custom GitIgnore, Repo-specific
+
+# ===================================
+# Custom GitIgnore, Boilerplate
 
 # designate a data directory that won't have its contents synced
 **/data/no_sync/*
