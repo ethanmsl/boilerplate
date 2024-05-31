@@ -20,5 +20,5 @@ tab_spaces = 8                     # legible groups! :)
 # where_single_line = true        # where on single line if few types
 #
 # inline_attribute_width=50    # distance to allow attributes on same lines a what they tag
-# # overflow_delimited_expr = true # no double nesting for verticle formatted lists, etc.
+# # overflow_delimited_expr = true # no double nesting for vertical formatted lists, etc.
 # type_punctuation_density = "Compressed"  # no spaces around (e.g.) TypeA+TypeB

@@ -164,6 +164,6 @@ wiremock
 ##divan
 ##flamegraph
 
-# for use with "console-subsriber"
+# for use with "console-subscriber"
 [build]
 rustflags = ["--cfg", "tokio_unstable"]
