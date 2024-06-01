@@ -11,8 +11,8 @@ tab_spaces = 4  # legible groups! :)
 
 
 ## braces start at end of a line
-brace_style = "SameLineWhere"           # braces start on line of what they connect to
-control_brace_style = "AlwaysSameLine"  #"ClosingNextLine"
+brace_style = "SameLineWhere"           # same line except after Where
+control_brace_style = "AlwaysSameLine" 
 
 
 ## sub element alignment with parent open delimiter
