@@ -23,7 +23,7 @@ NC := '\033[0m'     # No Color
 
 # Default, lists commands.
 _default:
-        @ just --list --unsorted
+        @just --list --unsorted
 
 # Initialize repository.
 init: && deps-ext
