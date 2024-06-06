@@ -9,11 +9,13 @@ unstable_features = true
 tab_spaces = 4  # legible groups! :)
 # hard_tabs = true
 
+## line lengths
+max_width = 120
+use_small_heuristics = "Max" # formatting based on sub-max_width lengths
 
 ## braces start at end of a line
 brace_style = "SameLineWhere"           # same line except after Where
 control_brace_style = "AlwaysSameLine" 
-
 
 ## sub element alignment with parent open delimiter
 imports_indent = "Visual"
@@ -22,7 +24,6 @@ indent_style = "Visual"
 ## import organization
 imports_granularity = "Crate"       # group all imports for a crate together
 group_imports = "StdExternalCrate"  # category style grouping of imports (ala isort in python)
-
 
 ## ~function related
 reorder_impl_items = true                # assoc_type & const at top of impl
