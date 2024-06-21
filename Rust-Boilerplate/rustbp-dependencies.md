@@ -111,6 +111,7 @@ clap --features=derive,wrap_help
                 ,env,unicode,string,debug
 dialoguer --features=fuzzy-matcher,fuzzy-select,history,completion
 indicatif --features=rayon,tokio
+owo_colors
 
 # WASM
 - egui
