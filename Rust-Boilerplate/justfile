@@ -37,6 +37,21 @@ check:
     -typos
     -committed
 
+# add binary name(s)
+# # Clean, release build, deploy file to `/user/local/bin/`
+# [confirm]
+# deploy:
+#     cargo clean
+#     cargo build --release
+#     cargo doc --release
+#     sudo cp target/release/_____________ /usr/local/bin/______________________
+
+# Show (dev-oriented) docs.
+docs:
+    rustup doc
+    rustup doc --std
+    cargo doc --all-features --document-private-items --open
+
 # Auto-fix errors picked up by check. (Manual exclusion of data folder as additional safeguard.)
 [confirm]
 fix:
@@ -46,6 +61,16 @@ fix:
 [confirm]
 teardown:
     cargo clean
+
+# Run a specific test with output visible. (Use '' for test_name to see all tests and set log_level)
+test-view test_name="" log_level="error":
+    @echo "'Fun' Fact; the '--test' flag only allows integration test selection and will just fail on unit tests."
+    RUST_LOG={{log_level}} cargo test {{test_name}} -- --nocapture 
+    
+# Run a specific test with NEXTEST with output visible. (Use '' for test_name to see all tests and set log_level)
+testnx-view test_name="" log_level="error":
+    @echo "'Fun' Fact; the '--test' flag only allows integration test selection and will just fail on unit tests."
+    RUST_LOG={{log_level}} cargo nextest run {{test_name}} --no-capture 
 
 # Watch a file: compile & run on changes.
 watch file_to_run:
