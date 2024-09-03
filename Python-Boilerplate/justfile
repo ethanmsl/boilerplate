@@ -50,8 +50,8 @@ hook hook='pre-commit':
     
 # create image of inferred code flow (may generate artifact files needing cleanup)
 [confirm]
-viz_code output_file='support/mailgunner_codeflow.png':
-    uv run code2flow src/mailgun_emailer/ --language py --output {{output_file}}
+viz_code output_file='support/PROJECT_NAME_codeflow.png':
+    uv run code2flow src/PROJECT_NAME/ --language py --output {{output_file}}
     open {{output_file}}
     
 # ######################################################################## #
