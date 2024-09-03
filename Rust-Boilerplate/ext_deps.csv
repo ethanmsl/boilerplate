@@ -1,4 +1,4 @@
-USE,PROGRAM_NAME,ALIAS,PROGRAM_VERSION,PROGRAM_INSTALL,COMMENT,NEEDS,DOCS
+USE,NAME,ALIAS,VERSION,INSTALL,COMMENT,NEEDS,DOCS
 ___,___,___,___,"___","___","___","___"
 ___,asm,"cargo-asm",___,"cargo install cargo-asm","rust assembly-viewer","cargo,zsh","https://github.com/gnzlbg/cargo-asm"
 ___,cargo,___,___,"<see>https://rustup.rs<\see>","rust cli manager","rustc","https://github.com/rust-lang/cargo"
