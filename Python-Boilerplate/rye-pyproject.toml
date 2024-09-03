@@ -3,7 +3,7 @@ name = ""
 version = "0.1.0"
 description = ""
 authors = [
-    { name = "Ethan Skowronski-Lutz", email = "33399972+ethanmsl@users.noreply.github.com" }
+    { name = "Ethan Skowronski-Lutz", email = "33399972+ethanmsl@users.noreply.github.com" },
 ]
 dependencies = []
 readme = "README.md"
@@ -40,7 +40,7 @@ exclude = [".venv", "src/experimental", "src/typestubs", "**/__pycache__"]
 # utilizing the fact that we've set Poetry `virtualenv.in-project` to true
 venvPath = "."
 venv = ".venv"
-typeCheckingMode = "basic"    # "off", "basic", "strict"
+typeCheckingMode = "basic"                 # "off", "basic", "strict"
 reportMissingImports = true
 reportMissingTypeStubs = true
 executionEnvironments = [{ root = "src" }]
@@ -58,37 +58,36 @@ line-length = 120
 lint.ignore-init-module-imports = true
 lint.select = ["ALL"]
 lint.ignore = [
-        "D203", # One blank line before class -- conflicts with "D211"
-        "D213", # Multiline docstrings start on second line -- conflicts with "D212"
-        "COM812", # missing-trailing-line-comma -- `ruff` recommends disabling to prevent conflicts
-        "ISC001", # single-line-implicit-string-concatenation -- `ruff` recommends disabling to prevent conflicts
-        "ANN101", # wants type for `self`; to be deprecated -- silly, also difficult due to circularity issues
-        "T201", # no print statements allowed -- prints are useful for communicating with user
+    "D203",   # One blank line before class -- conflicts with "D211"
+    "D213",   # Multiline docstrings start on second line -- conflicts with "D212"
+    "COM812", # missing-trailing-line-comma -- `ruff` recommends disabling to prevent conflicts
+    "ISC001", # single-line-implicit-string-concatenation -- `ruff` recommends disabling to prevent conflicts
+    "ANN101", # wants type for `self`; to be deprecated -- silly, also difficult due to circularity issues
+    "T201",   # no print statements allowed -- prints are useful for communicating with user
 ]
 [tool.ruff.lint.extend-per-file-ignores]
 # ignore these lints in a file that will be specifying CLI args (via Typer decorators)
 "commands.py" = [
-        "FBT001", # No `bool` params -- used to specify CLI arguments with Typer module
-        "FBT002", # No `bool` param defaults -- CLI argument values in Typer module
-        "UP007",  # No `Option[..]` Type-syntax -- used by Typer module
+    "FBT001", # No `bool` params -- used to specify CLI arguments with Typer module
+    "FBT002", # No `bool` param defaults -- CLI argument values in Typer module
+    "UP007",  # No `Option[..]` Type-syntax -- used by Typer module
 ]
 # ignore these lints in a file that will be testing CLI arg defining functions
 "test_commands.py" = [
-        "FBT003", # No `bool` in func calls -- functions being tested represent CLI args
+    "FBT003", # No `bool` in func calls -- functions being tested represent CLI args
 ]
 # ignore these lints in all test files
 "test_*.py" = [
-        "S101",    # Use of `assert` -- intended in tests files
-        "PLR2004", # Magic Value used in comparison -- impractical rule in test files
+    "S101",    # Use of `assert` -- intended in tests files
+    "PLR2004", # Magic Value used in comparison -- impractical rule in test files
 ]
 # ignore these lints in a file conversion to a Jupyter Notebook ("jupytext file")
 "*.ju.py" = [
-        "T201", # "print found"
-        "E402", # "module level import not at top of file"
-        # "ERA001", # "commented out code" - this can be confused by jupytext syntax
+    "T201", # "print found"
+    "E402", # "module level import not at top of file"
+    # "ERA001", # "commented out code" - this can be confused by jupytext syntax
 ]
 "__init__.py" = [
-        "F401", # import not used -- inits are definign namespace for module
-        "D104", # missing docstring -- often not useful for thes efiles
+    "F401", # import not used -- inits are definign namespace for module
+    "D104", # missing docstring -- often not useful for these files
 ]
-

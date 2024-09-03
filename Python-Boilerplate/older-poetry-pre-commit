@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ^ uses `env` command (via that path) to get path variables and then call `bash`
-#   according to first occurence found
+#   according to first occurrence found
 #
 # Name this script "pre-commit" and place it in the ".git/hooks/" directory
 
@@ -96,7 +96,7 @@ echo -e "${GREEN}Pyright Error-check passed!${NC}"
 echo -e "${DARK_GRAY}================================================================${NC}"
 
 # # for well-typing python *libraries*:
-# # Run Pyright for completness against the *installed package*
+# # Run Pyright for completeness against the *installed package*
 # echo -e "${DARK_GRAY}================================================================${NC}"
 # echo -e "${YELLOW}running Pyright for Type-Completeness on installed package...${NC}"
 # echo
