@@ -1,0 +1,110 @@
+name: matrix_test_and_publish
+
+# build the documentation whenever there are new commits on main
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    # Alternative: only build for tags.
+    # tags:
+    #   - '*'
+
+# security: restrict permissions for CI jobs.
+permissions:
+  contents: read
+
+jobs:
+  matrix_test:
+    name: python-${{ matrix.python-version }}_${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+        python-version:
+          - "3.10"
+          - "3.11"
+          - "3.12"
+        include: # TEMPORAL: Rundeck instance stats as of 2024-VIII-28-R
+          - os: ubuntu-20.04
+            python-version: "3.11.9"
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up uv
+        if: ${{ contains(matrix.os, 'ubuntu') || contains(matrix.os, 'macos') }}
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      - name: Set up Python ${{ matrix.python-version }}
+        run: uv python install ${{ matrix.python-version }}
+      - name: Pin Python ${{ matrix.python-version }}
+        run: uv python pin ${{ matrix.python-version }}
+      - name: List uv python versions
+        run: uv python list
+      - name: Verify Python Version
+        run: uv run python --version
+
+      - name: Install the project
+        run: uv sync --all-extras --dev
+
+      # Set envar to indicate this is the point in the test space to code without matrix test reqs
+      - name: Set Conditional Environment Variable
+        if: ${{ matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12' }}
+        run: echo "RUN_CONDITIONALLY_ONCE_PER_MATRIX=true" >> $GITHUB_ENV
+
+      #  Code analysis, that doesn't require matrix_testing
+      - name: format imports (ruff-isort)
+        if: ${{ env.RUN_CONDITIONALLY_ONCE_PER_MATRIX == 'true' }}
+        run: uv run ruff check --select I --fix src/* tests/*
+      - name: format code (ruff-black)
+        if: ${{ env.RUN_CONDITIONALLY_ONCE_PER_MATRIX == 'true' }}
+        run: uv run ruff format src/* tests/*
+      - name: lint code (ruff)
+        if: ${{ env.RUN_CONDITIONALLY_ONCE_PER_MATRIX == 'true' }}
+        run: uv run ruff check src/* tests/*
+      - name: type-check code (pyright)
+        if: ${{ env.RUN_CONDITIONALLY_ONCE_PER_MATRIX == 'true' }}
+        run: uv run pyright src/ tests/
+      - name: run security checks (bandit)
+        if: ${{ env.RUN_CONDITIONALLY_ONCE_PER_MATRIX == 'true' }}
+        run: uv run bandit --configfile pyproject.toml --recursive src
+
+      #  Active Tests, which requires matrix_testing
+      - name: load api-key
+        run: echo "API_KEY_MAILGUN=${{ secrets.API_KEY_MAILGUN_E654 }}" > .env
+      - name: run tests (pytest)
+        run: uv run pytest --cov-report term-missing --cov-fail-under=50 --cov=src tests/
+
+      #   Create Docs & Upload-to-Temp-Dir; doesn't require matrix_testing
+      # this job is read-only, but that's with respect to persistent changes to repo
+      # the upload-pages-artifact still can take the temporary docs
+      # they are used in the subsequent job with write access
+      # in order to create the GitHub pages docuemtation site
+      - name: pdoc
+        if: ${{ env.RUN_CONDITIONALLY_ONCE_PER_MATRIX == 'true' }}
+        run: uv run pdoc src/* --output-directory=web_docs/
+      - uses: actions/upload-pages-artifact@v1
+        if: ${{ env.RUN_CONDITIONALLY_ONCE_PER_MATRIX == 'true' }}
+        with:
+          path: web_docs/
+
+  # Deploy the artifact to GitHub pages.
+  # This is a separate job so that only actions/deploy-pages has the necessary permissions.
+  publish:
+    if: github.ref == 'refs/heads/main' # prevent `publish` running on PRs
+    needs: matrix_test
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v1
