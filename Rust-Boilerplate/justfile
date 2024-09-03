@@ -45,7 +45,7 @@ test:
     cargo test --doc --quiet
     cargo nextest run --status-level=leak
 
-# Run git hook. (pre-commmit)
+# Run git hook. (pre-commit)
 hook hook='pre-commit':
     git hook run {{hook}} 
 
